@@ -12,6 +12,8 @@ public class WordleController {
         System.out.println("test");
     }*/
 
+    //need to grab file from home computer; forgot the exact way of attaching methods to UI elements
+
     @FXML
     private Button buttonPlay;
 
