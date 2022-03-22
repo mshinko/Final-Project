@@ -1,11 +1,198 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.application.WordleController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" translateX="100.0" translateY="50.0" width="100.0" />
+      <AnchorPane prefHeight="827.0" prefWidth="700.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="175.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="300.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="425.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="550.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="50.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Label fx:id="r0c1Label" contentDisplay="CENTER" layoutX="175.0" layoutY="30.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r0c2Label" contentDisplay="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r0c3Label" contentDisplay="CENTER" layoutX="425.0" layoutY="30.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r0c4Label" contentDisplay="CENTER" layoutX="550.0" layoutY="30.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r0c0Label" contentDisplay="CENTER" layoutX="50.0" layoutY="30.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="175.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="300.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="425.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="550.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="50.0" layoutY="175.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Label fx:id="r1c1Label" contentDisplay="CENTER" layoutX="175.0" layoutY="155.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r1c2Label" contentDisplay="CENTER" layoutX="300.0" layoutY="155.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r1c3Label" contentDisplay="CENTER" layoutX="425.0" layoutY="155.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r1c4Label" contentDisplay="CENTER" layoutX="550.0" layoutY="155.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r1c0Label" contentDisplay="CENTER" layoutX="50.0" layoutY="155.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="175.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="300.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="425.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="550.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="50.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="175.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="300.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="425.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="550.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="50.0" layoutY="425.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Label fx:id="r2c1Label" contentDisplay="CENTER" layoutX="175.0" layoutY="280.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r2c2Label" contentDisplay="CENTER" layoutX="300.0" layoutY="280.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r2c3Label" contentDisplay="CENTER" layoutX="425.0" layoutY="280.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r2c4Label" contentDisplay="CENTER" layoutX="550.0" layoutY="280.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r2c0Label" contentDisplay="CENTER" layoutX="50.0" layoutY="280.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r3c1Label" contentDisplay="CENTER" layoutX="175.0" layoutY="405.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r3c2Label" contentDisplay="CENTER" layoutX="300.0" layoutY="405.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r3c3Label" contentDisplay="CENTER" layoutX="425.0" layoutY="405.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r3c4Label" contentDisplay="CENTER" layoutX="550.0" layoutY="405.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r3c0Label" contentDisplay="CENTER" layoutX="50.0" layoutY="405.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="175.0" layoutY="550.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="300.0" layoutY="550.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="425.0" layoutY="550.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="550.0" layoutY="550.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="50.0" layoutY="550.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="175.0" layoutY="675.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="300.0" layoutY="675.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="425.0" layoutY="675.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="550.0" layoutY="675.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="100.0" layoutX="50.0" layoutY="675.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+            <Label fx:id="r4c1Label" contentDisplay="CENTER" layoutX="175.0" layoutY="530.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r4c2Label" contentDisplay="CENTER" layoutX="300.0" layoutY="530.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r4c3Label" contentDisplay="CENTER" layoutX="425.0" layoutY="530.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r4c4Label" contentDisplay="CENTER" layoutX="550.0" layoutY="530.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r4c0Label" contentDisplay="CENTER" layoutX="50.0" layoutY="530.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r5c1Label" contentDisplay="CENTER" layoutX="175.0" layoutY="655.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r5c2Label" contentDisplay="CENTER" layoutX="300.0" layoutY="655.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r5c3Label" contentDisplay="CENTER" layoutX="425.0" layoutY="655.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r5c4Label" contentDisplay="CENTER" layoutX="550.0" layoutY="655.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="r5c0Label" contentDisplay="CENTER" layoutX="50.0" layoutY="655.0" prefHeight="131.0" prefWidth="100.0" textAlignment="CENTER">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </Label>
+            <Button layoutX="267.0" layoutY="150.0" mnemonicParsing="false" onAction="#testForLabelMatrix" text="Button" />
+         </children>
+      </AnchorPane>
    </children>
 </VBox>

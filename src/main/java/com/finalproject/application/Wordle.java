@@ -15,7 +15,7 @@ public class Wordle extends Application {
         s = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(Wordle.class.getResource("menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 300, 400);
-        sceneLoader(scene);
+        Wordle.sceneLoader(scene);
     }
 
     public static void sceneLoader(Scene scene){
