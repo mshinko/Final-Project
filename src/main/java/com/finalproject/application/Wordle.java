@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class Wordle extends Application {
     private static Stage s;
+    private static Game newGame = new Game();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -27,5 +28,8 @@ public class Wordle extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+    public static Game getNewGame(){
+        return newGame;
     }
 }
