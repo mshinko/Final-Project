@@ -116,5 +116,6 @@ public class WordleController {
     //every "enter" input triggers "Game.java" class for check method?
 
     //System.in.read(new byte[0x0A]); //check for enter key specifically. must be running when all 5 letters are input, but cant stop the program
+    //once 5 letters are input, only provide enter and delete inputs. have a trigger? method?
 
 }
