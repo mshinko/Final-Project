@@ -19,6 +19,8 @@ public class WordleController {
     private static Label[] currentRowLabels = new Label[5];
     private static Rectangle[] currentRowBoxes = new Rectangle[5];
 
+    //make new class object and throw variables into it rather than pulling?
+
 
     // if there are better ways to do this, update me. there was no efficient way to initialize the variables
     // with the names of the labels in the UI in a better way other than this.
@@ -104,6 +106,7 @@ public class WordleController {
     }
 
 
+    //intended on updating the row list (maps?) with FX:ID variables
     public static void update(){
 
     }
