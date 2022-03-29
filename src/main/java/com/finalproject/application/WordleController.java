@@ -19,6 +19,8 @@ public class WordleController {
     private static Label[] currentRowLabels = new Label[5];
     private static Rectangle[] currentRowBoxes = new Rectangle[5];
 
+    //make new class object and throw variables into it rather than pulling?
+
 
     // if there are better ways to do this, update me. there was no efficient way to initialize the variables
     // with the names of the labels in the UI in a better way other than this.
@@ -104,6 +106,7 @@ public class WordleController {
     }
 
 
+    //intended on updating the row list (maps?) with FX:ID variables
     public static void update(){
 
     }
@@ -116,5 +119,6 @@ public class WordleController {
     //every "enter" input triggers "Game.java" class for check method?
 
     //System.in.read(new byte[0x0A]); //check for enter key specifically. must be running when all 5 letters are input, but cant stop the program
+    //once 5 letters are input, only provide enter and delete inputs. have a trigger? method?
 
 }
