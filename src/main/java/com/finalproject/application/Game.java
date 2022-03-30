@@ -1,8 +1,12 @@
 package com.finalproject.application;
 
+import eu.hansolo.tilesfx.skins.WorldMapTileSkin;
 import javafx.fxml.FXML;
 
+import java.security.Signature;
+
 public class Game {
+    private WordleController wc = WordleController.instance();
     //file for game mechanics. I am unsure if specific labels and rectangles can be pulled from the controller class due to being unable to set the variables to static
 
     //dictionary implementation; word check; update squares
