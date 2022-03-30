@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -18,6 +19,10 @@ public class WordleController {
     //public static Object controller;
     private static Label[] currentRowLabels = new Label[5];
     private static Rectangle[] currentRowBoxes = new Rectangle[5];
+    /*@FXML private Parent IncludedView;
+    @FXML private InputController IncludedViewController; // $IncludedView;+Controller*/
+
+
 
     //make new class object and throw variables into it rather than pulling?
 
