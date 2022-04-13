@@ -9,7 +9,15 @@ import java.io.IOException;
 
 public class Wordle extends Application {
     private static Stage s;
-    private static Game newGame = new Game();
+    private static Game newGame;
+
+    static {
+        try {
+            newGame = new Game();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
