@@ -33,6 +33,8 @@ public class Game{
         dictionaryLoad();
         completedLoad();
         filter();
+        wordSelect();
+        //System.out.println(selectedWord);
     }
 
     private void dictionaryLoad(){
@@ -57,7 +59,8 @@ public class Game{
     }
 
     private void wordSelect(){
-
+        int num = (int)(Math.random()*dictionary.size());
+        selectedWord = (String) dictionary.get(num);
     }
 
     public void addCompleted(){

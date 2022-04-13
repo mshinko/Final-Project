@@ -11,20 +11,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class WordleController {
-    //public static Object controller;
     private static Label[] currentRowLabels = new Label[5];
     private static Rectangle[] currentRowBoxes = new Rectangle[5];
-    /*@FXML private Parent IncludedView;
-    @FXML private InputController IncludedViewController; // $IncludedView;+Controller*/
-
-
-
-    //make new class object and throw variables into it rather than pulling?
+    private Map<String, Map.Entry<Label, Rectangle>> gridMap = new HashMap<String, Map.Entry<Label, Rectangle>>();
+    //private static Game newGame = Wordle.getNewGame();
 
 
     // if there are better ways to do this, update me. there was no efficient way to initialize the variables
@@ -33,36 +29,60 @@ public class WordleController {
     // it needs to be the name of the FX:ID.
     @FXML
     private Label r0c0Label, r0c1Label, r0c2Label, r0c3Label, r0c4Label,
-            r1c0Label, r1c1Label, r1c2Label, r1c3Label, r1c4Label,
-            r2c0Label, r2c1Label, r2c2Label, r2c3Label, r2c4Label,
-            r3c0Label, r3c1Label, r3c2Label, r3c3Label, r3c4Label,
-            r4c0Label, r4c1Label, r4c2Label, r4c3Label, r4c4Label,
-            r5c0Label, r5c1Label, r5c2Label, r5c3Label, r5c4Label;
+                    r1c0Label, r1c1Label, r1c2Label, r1c3Label, r1c4Label,
+                    r2c0Label, r2c1Label, r2c2Label, r2c3Label, r2c4Label,
+                    r3c0Label, r3c1Label, r3c2Label, r3c3Label, r3c4Label,
+                    r4c0Label, r4c1Label, r4c2Label, r4c3Label, r4c4Label,
+                    r5c0Label, r5c1Label, r5c2Label, r5c3Label, r5c4Label;
 
-    // apparently 2d arrays do not work in terms of these FX:ID variables.
-    // There is no way to do this where this isnt public now that the 2d array is off the table.
 
-    // all boxes for color changing properties for each to show letter in word and letter in right spot
     @FXML
     private Rectangle r0c0Box, r0c1Box, r0c2Box, r0c3Box, r0c4Box,
-            r1c0Box, r1c1Box, r1c2Box, r1c3Box, r1c4Box,
-            r2c0Box, r2c1Box, r2c2Box, r2c3Box, r2c4Box,
-            r3c0Box, r3c1Box, r3c2Box, r3c3Box, r3c4Box,
-            r4c0Box, r4c1Box, r4c2Box, r4c3Box, r4c4Box,
-            r5c0Box, r5c1Box, r5c2Box, r5c3Box, r5c4Box;
+                        r1c0Box, r1c1Box, r1c2Box, r1c3Box, r1c4Box,
+                        r2c0Box, r2c1Box, r2c2Box, r2c3Box, r2c4Box,
+                        r3c0Box, r3c1Box, r3c2Box, r3c3Box, r3c4Box,
+                        r4c0Box, r4c1Box, r4c2Box, r4c3Box, r4c4Box,
+                        r5c0Box, r5c1Box, r5c2Box, r5c3Box, r5c4Box;
 
 
-    //tried to put r0c0 for both rectangle and label into a hashmap to make it a lot easier. doesnt seem efficiently possible at the current moment
-    //private Map<Integer, Map<Integer, List<Object>>> test = new HashMap<Integer, Map<Integer, List<Object>>>();
-    /*private Map<String, List<Object>> test = new HashMap<String, List<Object>>();
 
     private void load(){
-        test.put("r0c0", new Label[]{r0c0Label, r0c0Box});
-    }*/
+        gridMap.put("r0c0", new AbstractMap.SimpleEntry(r0c0Label, r0c0Box));
+        gridMap.put("r0c1", new AbstractMap.SimpleEntry(r0c1Label, r0c1Box));
+        gridMap.put("r0c2", new AbstractMap.SimpleEntry(r0c2Label, r0c2Box));
+        gridMap.put("r0c3", new AbstractMap.SimpleEntry(r0c3Label, r0c3Box));
+        gridMap.put("r0c4", new AbstractMap.SimpleEntry(r0c4Label, r0c4Box));
 
+        gridMap.put("r1c0", new AbstractMap.SimpleEntry(r1c0Label, r1c0Box));
+        gridMap.put("r1c1", new AbstractMap.SimpleEntry(r1c1Label, r1c1Box));
+        gridMap.put("r1c2", new AbstractMap.SimpleEntry(r1c2Label, r1c2Box));
+        gridMap.put("r1c3", new AbstractMap.SimpleEntry(r1c3Label, r1c3Box));
+        gridMap.put("r1c4", new AbstractMap.SimpleEntry(r1c4Label, r1c4Box));
 
+        gridMap.put("r2c0", new AbstractMap.SimpleEntry(r2c0Label, r2c0Box));
+        gridMap.put("r2c1", new AbstractMap.SimpleEntry(r2c1Label, r2c1Box));
+        gridMap.put("r2c2", new AbstractMap.SimpleEntry(r2c2Label, r2c2Box));
+        gridMap.put("r2c3", new AbstractMap.SimpleEntry(r2c3Label, r2c3Box));
+        gridMap.put("r2c4", new AbstractMap.SimpleEntry(r2c4Label, r2c4Box));
 
+        gridMap.put("r3c0", new AbstractMap.SimpleEntry(r3c0Label, r3c0Box));
+        gridMap.put("r3c1", new AbstractMap.SimpleEntry(r3c1Label, r3c1Box));
+        gridMap.put("r3c2", new AbstractMap.SimpleEntry(r3c2Label, r3c2Box));
+        gridMap.put("r3c3", new AbstractMap.SimpleEntry(r3c3Label, r3c3Box));
+        gridMap.put("r3c4", new AbstractMap.SimpleEntry(r3c4Label, r3c4Box));
 
+        gridMap.put("r4c0", new AbstractMap.SimpleEntry(r4c0Label, r4c0Box));
+        gridMap.put("r4c1", new AbstractMap.SimpleEntry(r4c1Label, r4c1Box));
+        gridMap.put("r4c2", new AbstractMap.SimpleEntry(r4c2Label, r4c2Box));
+        gridMap.put("r4c3", new AbstractMap.SimpleEntry(r4c3Label, r4c3Box));
+        gridMap.put("r4c4", new AbstractMap.SimpleEntry(r4c4Label, r4c4Box));
+
+        gridMap.put("r5c0", new AbstractMap.SimpleEntry(r5c0Label, r5c0Box));
+        gridMap.put("r5c1", new AbstractMap.SimpleEntry(r5c1Label, r5c1Box));
+        gridMap.put("r5c2", new AbstractMap.SimpleEntry(r5c2Label, r5c2Box));
+        gridMap.put("r5c3", new AbstractMap.SimpleEntry(r5c3Label, r5c3Box));
+        gridMap.put("r5c4", new AbstractMap.SimpleEntry(r5c4Label, r5c4Box));
+    }
 
     @FXML
     protected void onQuitButtonClick() {
@@ -77,7 +97,9 @@ public class WordleController {
         r1c1Label.setAlignment(Pos.CENTER);
         letterContains(r1c1Box);
 
-        Wordle.getNewGame();
+        //load();
+
+        //Wordle.getNewGame();
         // allow users to type in all 5 spaces like normal line, delete and type normally,
         // and take the word when they press enter, then deny if its not a real word
     }
@@ -101,6 +123,7 @@ public class WordleController {
         FXMLLoader fxmlLoader = new FXMLLoader(Wordle.class.getResource("game.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 825);
         Wordle.sceneLoader(scene);
+        load();
     }
 
     @FXML
