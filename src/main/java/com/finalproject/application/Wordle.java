@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Wordle extends Application {
+
     private static Stage s;
     private static Game newGame;
 
@@ -23,6 +24,7 @@ public class Wordle extends Application {
     public void start(Stage stage) throws IOException {
         s = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(Wordle.class.getResource("menu.fxml"));
+        //ModuleLayer.Controller controller = fxmlLoader.getController();
         Scene scene = new Scene(fxmlLoader.load(), 300, 400);
         Wordle.sceneLoader(scene);
     }

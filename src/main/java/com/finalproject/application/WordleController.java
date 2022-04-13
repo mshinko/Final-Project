@@ -1,12 +1,15 @@
 package com.finalproject.application;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -17,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 public class WordleController {
+
     private static Label[] currentRowLabels = new Label[5];
     private static Rectangle[] currentRowBoxes = new Rectangle[5];
     private Map<String, Map.Entry<Label, Rectangle>> gridMap = new HashMap<String, Map.Entry<Label, Rectangle>>();
@@ -45,7 +49,7 @@ public class WordleController {
                         r5c0Box, r5c1Box, r5c2Box, r5c3Box, r5c4Box;
 
 
-
+    //tie the label and box together in a map for easier referencing
     private void load(){
         gridMap.put("r0c0", new AbstractMap.SimpleEntry(r0c0Label, r0c0Box));
         gridMap.put("r0c1", new AbstractMap.SimpleEntry(r0c1Label, r0c1Box));
@@ -91,7 +95,7 @@ public class WordleController {
 
 
     @FXML
-    protected void testForLabelMatrix() throws IOException{
+    protected void testForLabelMatrix(){
         // make function with input for each square in a row, manually center. I dont know why javafx refuses to center the text
         r1c1Label.setText("G");
         r1c1Label.setAlignment(Pos.CENTER);
@@ -122,6 +126,16 @@ public class WordleController {
     protected void gameSceneLoader() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Wordle.class.getResource("game.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 825);
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                String test = keyEvent.getCharacter();
+
+                System.out.println(test);
+            }
+        });
+
         Wordle.sceneLoader(scene);
         load();
     }
@@ -133,14 +147,11 @@ public class WordleController {
         Wordle.sceneLoader(scene);
     }
 
-
-    //intended on updating the row list (maps?) with FX:ID variables
-    public static void update(){
-
+    public void keyTyped(KeyEvent e){
+        //String letter = e.getCharacter();
+        KeyCode letter = e.getCode();
+        System.out.println(letter);
     }
-
-
-
 
 
     //implement scanners directly from here, and send info from the methods in this file
