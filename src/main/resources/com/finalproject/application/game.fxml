@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="WordleMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.application.WordleController">
+<VBox fx:id="WordleMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.application.Controller">
    <children>
       <AnchorPane prefHeight="827.0" prefWidth="700.0">
          <children>
@@ -191,7 +191,7 @@
                   <Font size="96.0" />
                </font>
             </Label>
-            <Button layoutX="267.0" layoutY="150.0" mnemonicParsing="false" onAction="#testForLabelMatrix" text="Button" />
+            <Button layoutX="267.0" layoutY="150.0" mnemonicParsing="false" text="Button" />
          </children>
       </AnchorPane>
    </children>
