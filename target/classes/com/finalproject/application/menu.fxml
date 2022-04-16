@@ -38,11 +38,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.application.WordleController">
+<VBox prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finalproject.application.Controller">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="buttonPlay" layoutX="122.0" layoutY="181.0" mnemonicParsing="false" onAction="#gameSceneLoader" prefHeight="38.0" prefWidth="55.0" text="Play" />
+            <Button fx:id="buttonPlay" layoutX="122.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="38.0" prefWidth="55.0" text="Play" />
             <Button fx:id="buttonQuit" layoutX="122.0" layoutY="240.0" mnemonicParsing="false" onAction="#onQuitButtonClick" prefHeight="38.0" prefWidth="55.0" text="Quit" />
             <Label layoutX="37.0" layoutY="59.0" prefHeight="54.0" prefWidth="226.0" text="Knockoff Wordle">
                <font>
