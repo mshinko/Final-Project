@@ -17,10 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable {
     private Stage stage;
@@ -226,7 +223,7 @@ public class Controller implements Initializable {
     //Switches to menu and resets game
     @FXML
     protected void switchToMenu(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Controller.class.getResource("menu.fxml"));
+        root = FXMLLoader.load(Objects.requireNonNull(Controller.class.getResource("menu.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
