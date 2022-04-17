@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
+    //Loads application stage
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("menu.fxml"));
@@ -21,6 +22,7 @@ public class Main extends Application {
         stage.centerOnScreen();
     }
 
+    //Main
     public static void main(String[] args) {
         launch();
     }
