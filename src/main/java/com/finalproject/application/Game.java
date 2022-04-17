@@ -62,8 +62,7 @@ public class Game{
         fileWriter = new FileWriter("completed.txt");
         completed.add(selectedWord);
         for(int i = 0; i < completed.size(); i++){
-            fileWriter.write(completed.get(i));
-            System.out.println(completed.get(i));
+            fileWriter.write(completed.get(i) + "\n");
         }
         fileWriter.close();
     }
