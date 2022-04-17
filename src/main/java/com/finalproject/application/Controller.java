@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -29,8 +30,10 @@ public class Controller implements Initializable {
     private Scene scene;
     private Parent root;
     private int currentRow = 0;
-    //set this to main.getGame()
-    private String word = "TESTS";
+    private Game game = new Game();
+    private String word;
+    private String letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
+    private boolean end = false;
 
     //currentBox is set on the position on the grid that is to be filled when a key is pressed, not the one after. insertion position
     private static String currentBox = "r0c0";
@@ -42,8 +45,8 @@ public class Controller implements Initializable {
             r2c0Label, r2c1Label, r2c2Label, r2c3Label, r2c4Label,
             r3c0Label, r3c1Label, r3c2Label, r3c3Label, r3c4Label,
             r4c0Label, r4c1Label, r4c2Label, r4c3Label, r4c4Label,
-            r5c0Label, r5c1Label, r5c2Label, r5c3Label, r5c4Label;
-
+            r5c0Label, r5c1Label, r5c2Label, r5c3Label, r5c4Label,
+            keyLabel;
 
     @FXML
     Rectangle r0c0Box, r0c1Box, r0c2Box, r0c3Box, r0c4Box,
@@ -53,11 +56,16 @@ public class Controller implements Initializable {
             r4c0Box, r4c1Box, r4c2Box, r4c3Box, r4c4Box,
             r5c0Box, r5c1Box, r5c2Box, r5c3Box, r5c4Box;
 
+    @FXML
+    Button exitButton;
+
+    public Controller() throws IOException {
+        word = game.getSelectedWord().toUpperCase();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         load();
-
     }
 
     @FXML
@@ -97,6 +105,8 @@ public class Controller implements Initializable {
         gridMap.put("r5c2", new AbstractMap.SimpleEntry<>(r5c2Label, r5c2Box));
         gridMap.put("r5c3", new AbstractMap.SimpleEntry<>(r5c3Label, r5c3Box));
         gridMap.put("r5c4", new AbstractMap.SimpleEntry<>(r5c4Label, r5c4Box));
+
+
     }
 
     public void initKeyActions(Scene scene){
@@ -104,9 +114,6 @@ public class Controller implements Initializable {
             @Override
             public void handle(KeyEvent keyEvent) {
                 letterFill(keyEvent.getCode());
-                System.out.println(currentBox);
-                //System.out.println(gridMap.get("r0c2").getKey().getText().equals(""));
-                //System.out.println(currentBox.substring(0,3) + "4");
             }
         });
     }
@@ -115,7 +122,7 @@ public class Controller implements Initializable {
     public void letterFill(KeyCode k){
         int r = Integer.parseInt(currentBox.substring(1,2));
         int c = Integer.parseInt(currentBox.substring(3));
-
+        if(end){ return; }
         if(k == KeyCode.BACK_SPACE){
             if(c == 0 && r == currentRow){
 
@@ -126,38 +133,52 @@ public class Controller implements Initializable {
                 c--;
             }
             currentBox = "r" + r + "c" + c;
-
             gridMap.get(currentBox).getKey().setText("");
             return;
         }else if(k == KeyCode.ENTER){
             //Bug - when hitting enter multiple, prevents keys from being input
             if(c == 0 && r != 0){
-
+                int numCorrect = 0;
                 for(int i = 0; i < 5; i++){
                     String letter = gridMap.get("r" + currentRow + "c" + i).getKey().getText();
                     Rectangle rect = gridMap.get("r" + currentRow + "c" + i).getValue();
                     if(word.charAt(i) == letter.charAt(0)){
                         letterPosition(rect);
+                        numCorrect++;
                     }else if(word.contains(letter)){
                         letterContains(rect);
                     }else{
                         letterIncorrect(rect);
                     }
-                }
 
+                    if(letters.contains(letter)){
+                        int index = letters.indexOf(letter);
+                        if(index != letters.length()-1){
+                            letters = letters.substring(0, index) + letters.substring(index+2);
+                        }else{
+                            letters = letters.substring(0,index-1);
+                        }
+                    }
+                    keyLabel.setText("Available Letters\n" + letters);
+                }
                 currentRow++;
+                if(numCorrect == 5){
+                    endGame();
+                    keyLabel.setText("");
+                    return;
+                }else if(currentRow == 6){
+                    endGame();
+                    keyLabel.setText(word);
+                    return;
+                }
                 System.out.println("Complete");
             }
         }else if(!Character.isLetter(k.getChar().charAt(0))){
             return;
         }else {
             if(c == 4){
-                if(r == 5){
-                    //end game
-                }else{
-                    c = 0;
-                    r++;
-                }
+                c = 0;
+                r++;
             }else{
                 if(r == currentRow){
                     c++;
@@ -166,30 +187,28 @@ public class Controller implements Initializable {
                 }
             }
         }
-
-
         gridMap.get(currentBox).getKey().setText(k.getChar());
         currentBox = "r" + r + "c" + c;
-
-
-        //currentBox;
     }
 
-
-
-
+    private void endGame(){
+        end = true;
+        exitButton.setDisable(false);
+        exitButton.setVisible(true);
+        System.out.println("End");
+    }
 
     //Box color setting
     //if letter is not in word
-    public static void letterIncorrect(Rectangle r){
+    public void letterIncorrect(Rectangle r){
         r.setFill(Color.RED);
     }
     //if letter is in word but not correct
-    public static void letterContains(Rectangle r){
+    public void letterContains(Rectangle r){
         r.setFill(Color.YELLOW);
     }
     //if letter is in word and is correct in position
-    public static void letterPosition(Rectangle r){
+    public void letterPosition(Rectangle r){
         r.setFill(Color.GREEN);
     }
 
@@ -202,7 +221,6 @@ public class Controller implements Initializable {
     }
 
 
-
     //Scene switching
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Controller.class.getResource("menu.fxml"));
@@ -210,6 +228,11 @@ public class Controller implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        stage.centerOnScreen();
+        currentRow = 0;
+        letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
+        currentBox = "r0c0";
+        end = false;
     }
 
     public void switchToGame(ActionEvent event) throws IOException {
@@ -225,5 +248,6 @@ public class Controller implements Initializable {
 
         stage.setScene(scene);
         stage.show();
+        stage.centerOnScreen();
     }
 }
