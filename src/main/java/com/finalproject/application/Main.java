@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
-    //private static Game newGame;
+    private static Game newGame;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -27,7 +27,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch();
     }
-    /*public static Game getNewGame(){
+    public static Game getNewGame(){
         return newGame;
-    }*/
+    }
 }

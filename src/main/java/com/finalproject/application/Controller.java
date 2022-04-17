@@ -28,7 +28,9 @@ public class Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private boolean rowComplete = false;
+    private int currentRow = 0;
+    private String word = "TESTS";
+
     //currentBox is set on the position on the grid that is to be filled when a key is pressed, not the one after. insertion position
     private static String currentBox = "r0c0";
     private final Map<String, Map.Entry<Label, Rectangle>> gridMap = new HashMap<>();
@@ -52,7 +54,10 @@ public class Controller implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { load(); }
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        load();
+
+    }
 
     @FXML
     private void load(){
@@ -98,48 +103,49 @@ public class Controller implements Initializable {
             @Override
             public void handle(KeyEvent keyEvent) {
                 letterFill(keyEvent.getCode());
-                //gridMap.get(currentBox).getKey().setText("a");
-                //r0c0Label.setText("a");
+                System.out.println(currentBox);
+                //System.out.println(gridMap.get("r0c2").getKey().getText().equals(""));
+                //System.out.println(currentBox.substring(0,3) + "4");
             }
         });
     }
-
-
-    //System.in.read(new byte[0x0A]); //check for enter key specifically. must be running when all 5 letters are input, but cant stop the program
-    //once 5 letters are input, only provide enter and delete inputs. have a trigger? method?
 
 
     public void letterFill(KeyCode k){
         int r = Integer.parseInt(currentBox.substring(1,2));
         int c = Integer.parseInt(currentBox.substring(3));
 
-        //check for if row is ready for analysis
-        if(c == 0 && r != 0){
-            if(rowComplete){
-                rowComplete = false;
-                //current line checked, color associated
-            }else{
-                return;
-            }
-        }
-
-
         if(k == KeyCode.BACK_SPACE){
-            if(c == 0 && r != 0){
+            if(c == 0 && r == currentRow){
+
+            }else if(c == 0 && r != 0){
                 c = 4;
                 r--;
             } else if(c != 0){
                 c--;
             }
-            currentBox = currentBox.substring(0,3) + c;
+            currentBox = "r" + r + "c" + c;
 
             gridMap.get(currentBox).getKey().setText("");
             return;
         }else if(k == KeyCode.ENTER){
-            if(r != 0){
-                if(!gridMap.get(currentBox.substring(0,3) + "4").getKey().getText().equals("")){
-                    rowComplete = true;
+            //Bug - when hitting enter multiple, prevents keys from being input
+            if(c == 0 && r != 0){
+
+                for(int i = 0; i < 5; i++){
+                    String letter = gridMap.get("r" + currentRow + "c" + i).getKey().getText();
+                    Rectangle rect = gridMap.get("r" + currentRow + "c" + i).getValue();
+                    if(word.charAt(i) == letter.charAt(0)){
+                        letterPosition(rect);
+                    }else if(word.contains(letter)){
+                        letterContains(rect);
+                    }else{
+                        letterIncorrect(rect);
+                    }
                 }
+
+                currentRow++;
+                System.out.println("Complete");
             }
         }else if(!Character.isLetter(k.getChar().charAt(0))){
             return;
@@ -152,9 +158,14 @@ public class Controller implements Initializable {
                     r++;
                 }
             }else{
-                c++;
+                if(r == currentRow){
+                    c++;
+                }else if(r != currentRow){
+                    return;
+                }
             }
         }
+
 
         gridMap.get(currentBox).getKey().setText(k.getChar());
         currentBox = "r" + r + "c" + c;
@@ -168,6 +179,10 @@ public class Controller implements Initializable {
 
 
     //Box color setting
+    //if letter is not in word
+    public static void letterIncorrect(Rectangle r){
+        r.setFill(Color.RED);
+    }
     //if letter is in word but not correct
     public static void letterContains(Rectangle r){
         r.setFill(Color.YELLOW);
