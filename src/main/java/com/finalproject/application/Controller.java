@@ -29,6 +29,7 @@ public class Controller implements Initializable {
     private Scene scene;
     private Parent root;
     private int currentRow = 0;
+    //set this to main.getGame()
     private String word = "TESTS";
 
     //currentBox is set on the position on the grid that is to be filled when a key is pressed, not the one after. insertion position
