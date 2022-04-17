@@ -110,26 +110,11 @@ public class Controller implements Initializable {
 
 
     public void letterFill(KeyCode k){
-        if(!Character.isLetter(k.getChar().charAt(0))){
-            return;
-        }else if(k == KeyCode.BACK_SPACE){
-            gridUpdate(k);
-        }else if(k == KeyCode.ENTER){
-            gridUpdate(k);
-        }
-
-        gridMap.get(currentBox).getKey().setText(k.getChar());
-        gridUpdate(k);
-
-
-        //currentBox;
-    }
-
-    public void gridUpdate(KeyCode k){
-        int r = Integer.parseInt(currentBox.substring(1,1));
+        int r = Integer.parseInt(currentBox.substring(1,2));
         int c = Integer.parseInt(currentBox.substring(3));
 
-        if(currentBox.charAt(3) == '0' && currentBox.charAt(0) != '0'){
+        //check for if row is ready for analysis
+        if(c == 0 && r != 0){
             if(rowComplete){
                 rowComplete = false;
                 //current line checked, color associated
@@ -138,6 +123,7 @@ public class Controller implements Initializable {
             }
         }
 
+
         if(k == KeyCode.BACK_SPACE){
             if(c == 0 && r != 0){
                 c = 4;
@@ -145,20 +131,19 @@ public class Controller implements Initializable {
             } else if(c != 0){
                 c--;
             }
-            currentBox = currentBox.substring(0,2) + c;
+            currentBox = currentBox.substring(0,3) + c;
 
             gridMap.get(currentBox).getKey().setText("");
-
             return;
-        } else if(k == KeyCode.ENTER){
+        }else if(k == KeyCode.ENTER){
             if(r != 0){
-                if(!gridMap.get(currentBox.substring(0,2) + "4").getKey().getText().equals("")){
+                if(!gridMap.get(currentBox.substring(0,3) + "4").getKey().getText().equals("")){
                     rowComplete = true;
                 }
             }
-
-
-        }else{
+        }else if(!Character.isLetter(k.getChar().charAt(0))){
+            return;
+        }else {
             if(c == 4){
                 if(r == 5){
                     //end game
@@ -171,8 +156,14 @@ public class Controller implements Initializable {
             }
         }
 
+        gridMap.get(currentBox).getKey().setText(k.getChar());
         currentBox = "r" + r + "c" + c;
+
+
+        //currentBox;
     }
+
+
 
 
 
