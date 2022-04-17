@@ -2,18 +2,15 @@ package com.finalproject.application;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -30,8 +27,8 @@ public class Controller implements Initializable {
     private Scene scene;
     private Parent root;
     private int currentRow = 0;
-    private Game game = new Game();
-    private String word;
+    private final Game game = new Game();
+    private final String word;
     private String letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
     private boolean end = false;
 
@@ -40,7 +37,7 @@ public class Controller implements Initializable {
     private final Map<String, Map.Entry<Label, Rectangle>> gridMap = new HashMap<>();
 
     @FXML
-    Label r0c0Label, r0c1Label, r0c2Label, r0c3Label, r0c4Label,
+    private Label r0c0Label, r0c1Label, r0c2Label, r0c3Label, r0c4Label,
             r1c0Label, r1c1Label, r1c2Label, r1c3Label, r1c4Label,
             r2c0Label, r2c1Label, r2c2Label, r2c3Label, r2c4Label,
             r3c0Label, r3c1Label, r3c2Label, r3c3Label, r3c4Label,
@@ -49,7 +46,7 @@ public class Controller implements Initializable {
             keyLabel;
 
     @FXML
-    Rectangle r0c0Box, r0c1Box, r0c2Box, r0c3Box, r0c4Box,
+    private Rectangle r0c0Box, r0c1Box, r0c2Box, r0c3Box, r0c4Box,
             r1c0Box, r1c1Box, r1c2Box, r1c3Box, r1c4Box,
             r2c0Box, r2c1Box, r2c2Box, r2c3Box, r2c4Box,
             r3c0Box, r3c1Box, r3c2Box, r3c3Box, r3c4Box,
@@ -57,17 +54,20 @@ public class Controller implements Initializable {
             r5c0Box, r5c1Box, r5c2Box, r5c3Box, r5c4Box;
 
     @FXML
-    Button exitButton;
+    private Button exitButton;
 
+    //Constructor
     public Controller() throws IOException {
         word = game.getSelectedWord().toUpperCase();
     }
 
+    //Method run when connecting the fxml file attributes to their corresponding variables above
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         load();
     }
 
+    //Loads all variables into map for easier access with string and consolidation
     @FXML
     private void load(){
         gridMap.put("r0c0", new AbstractMap.SimpleEntry<>(r0c0Label, r0c0Box));
@@ -109,17 +109,13 @@ public class Controller implements Initializable {
 
     }
 
-    public void initKeyActions(Scene scene){
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                letterFill(keyEvent.getCode());
-            }
-        });
+    //On key press (event)
+    private void initKeyActions(Scene scene){
+        scene.setOnKeyPressed(keyEvent -> letterFill(keyEvent.getCode()));
     }
 
-
-    public void letterFill(KeyCode k){
+    //Manages input into rows, making sure 1 row is accessed at a time
+    private void letterFill(KeyCode k){
         int r = Integer.parseInt(currentBox.substring(1,2));
         int c = Integer.parseInt(currentBox.substring(3));
         if(end){ return; }
@@ -165,6 +161,11 @@ public class Controller implements Initializable {
                 if(numCorrect == 5){
                     endGame();
                     keyLabel.setText("");
+                    try {
+                        game.addCompleted();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     return;
                 }else if(currentRow == 6){
                     endGame();
@@ -182,7 +183,7 @@ public class Controller implements Initializable {
             }else{
                 if(r == currentRow){
                     c++;
-                }else if(r != currentRow){
+                }else {
                     return;
                 }
             }
@@ -191,6 +192,7 @@ public class Controller implements Initializable {
         currentBox = "r" + r + "c" + c;
     }
 
+    //If word is correct or if out of tries
     private void endGame(){
         end = true;
         exitButton.setDisable(false);
@@ -200,21 +202,20 @@ public class Controller implements Initializable {
 
     //Box color setting
     //if letter is not in word
-    public void letterIncorrect(Rectangle r){
+    private void letterIncorrect(Rectangle r){
         r.setFill(Color.RED);
     }
     //if letter is in word but not correct
-    public void letterContains(Rectangle r){
+    private void letterContains(Rectangle r){
         r.setFill(Color.YELLOW);
     }
     //if letter is in word and is correct in position
-    public void letterPosition(Rectangle r){
+    private void letterPosition(Rectangle r){
         r.setFill(Color.GREEN);
     }
 
-
-
     //Buttons
+    //Exits program
     @FXML
     protected void onQuitButtonClick() {
         Platform.exit();
@@ -222,7 +223,9 @@ public class Controller implements Initializable {
 
 
     //Scene switching
-    public void switchToMenu(ActionEvent event) throws IOException {
+    //Switches to menu and resets game
+    @FXML
+    protected void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Controller.class.getResource("menu.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -235,7 +238,9 @@ public class Controller implements Initializable {
         end = false;
     }
 
-    public void switchToGame(ActionEvent event) throws IOException {
+    //Switches to game
+    @FXML
+    protected void switchToGame(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("game.fxml"));
         root = loader.load();
 

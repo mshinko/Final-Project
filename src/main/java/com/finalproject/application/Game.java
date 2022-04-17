@@ -1,6 +1,5 @@
 package com.finalproject.application;
 
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,24 +8,16 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Game{
-    //file for game mechanics. I am unsure if specific labels and rectangles can be pulled from the controller class due to being unable to set the variables to static
-
-    //read dictionary.txt, import, use 5 letter words, then remove the ones from a different file that have been done previously
-
-    //Linked list will be faster at this size
-    private LinkedList dictionary = new LinkedList();
-    private LinkedList completed = new LinkedList();
+    private LinkedList<String> dictionary = new LinkedList();
+    private LinkedList<String> completed = new LinkedList();
     private String selectedWord;
-    private static Scanner dictionaryInput;
-    private static Scanner completedInput;
+    private Scanner dictionaryInput;
+    private Scanner completedInput;
+    private FileWriter fileWriter;
+    private PrintWriter printWriter;
 
-    FileWriter fileWriter;
-    PrintWriter printWriter;
-
-
+    //Constructor
     public Game() throws IOException {
-        fileWriter = new FileWriter("completed.txt");
-        printWriter = new PrintWriter(fileWriter);
         dictionaryInput = new Scanner(new File("dictionary.txt"));
         completedInput = new Scanner(new File("completed.txt"));
         dictionaryLoad();
@@ -36,6 +27,7 @@ public class Game{
         System.out.println(selectedWord);
     }
 
+    //Loads dictionary and filters out 5 letter words
     private void dictionaryLoad(){
         while(dictionaryInput.hasNext()){
             String line = dictionaryInput.nextLine();
@@ -45,31 +37,38 @@ public class Game{
         }
     }
 
+    //Loads previously completed words
     private void completedLoad(){
         while(completedInput.hasNext()){
             completed.addLast(completedInput.nextLine());
         }
     }
 
+    //Removes completed words from list of options
     private void filter(){
         for(int i = 0; i < completed.size(); i++){
             dictionary.remove(dictionary.indexOf(completed.get(i)));
         }
     }
 
+    //Selects a word at random
     private void wordSelect(){
         int num = (int)(Math.random()*dictionary.size());
-        selectedWord = (String) dictionary.get(num);
+        selectedWord = dictionary.get(num);
     }
 
-    public void addCompleted(){
+    //Adds a completed word for future
+    public void addCompleted() throws IOException{
+        fileWriter = new FileWriter("completed.txt");
         completed.add(selectedWord);
         for(int i = 0; i < completed.size(); i++){
-            printWriter.print(completed.get(i));
+            fileWriter.write(completed.get(i));
+            System.out.println(completed.get(i));
         }
-        printWriter.close();
+        fileWriter.close();
     }
 
+    //returns currently selected word
     public String getSelectedWord() {
         return selectedWord;
     }
